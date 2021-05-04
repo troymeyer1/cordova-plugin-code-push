@@ -399,15 +399,11 @@ StatusReport* rollbackStatusReport = nil;
     // maintaining back-compat with Cordova iOS 3.9.0, we need to conditionally
     // use the WebViewEngine for performing navigations only if the host app
     // is running 4.0.0+, and fallback to directly using the WebView otherwise.
-#ifdef __CORDOVA_4_0_0
     if ([self hasIonicWebViewEngine]) {
         [self setServerBasePath:url.path];
     } else {
         [self.webViewEngine loadRequest:[NSURLRequest requestWithURL:url]];
     }
-#else
-    [(UIWebView*)self.webView loadRequest:[NSURLRequest requestWithURL:url]];
-#endif
 }
 
 - (Boolean) hasIonicWebViewEngine {
